@@ -1,0 +1,6 @@
+paperTexture:
+   http://www.fudgegraphics.com/2009/06/free-hi-res-old-grunge-paper-textures/
+
+background:
+   http://eu.battle.net/wow/de/media/artwork/wow-cataclysm?view#/artwork-cataclysm
+   http://eu.media.blizzard.com/wow/media/artwork/wow-cataclysm/artwork-cataclysm-full.jpg
