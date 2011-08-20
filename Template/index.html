@@ -14,7 +14,8 @@
    
    <!-- Style Sheets -->
    <link rel="stylesheet" href="styleMain.css" media="screen" />
-   <link rel="stylesheet" href="css3buttons/stylesheets/css3buttons.css" media="screen">
+   <link rel="stylesheet" href="css3buttons/stylesheets/css3buttons.css"
+         media="screen">
    <link rel="stylesheet" href="978.css" media="screen">
    
    <!-- Tiny Editor -->
@@ -34,13 +35,20 @@
    
    <div id="wrapper">
       <nav>
-         <a href="#" class="big primary capitals negative button"><span class="home icon"></span>Start</a>
-         <a href="#" class="big primary capitals negative button"><span class="check icon"></span>Raid</a>
-         <a href="#" class="big primary capitals negative button"><span class="calendar icon"></span>Planer</a>
-         <a href="#" class="big primary capitals negative button"><span class="user icon"></span>Anmeldung</a>
-         <a href="#" class="big primary capitals negative button"><span class="pen icon"></span>Bewerbung</a>
-         <a href="#" class="big primary capitals negative button"><span class="lock icon"></span>Forum</a>
-         <a href="#" class="big primary capitals negative button"><span class="book icon"></span>Archiv</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="home icon"></span>Start</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="check icon"></span>Raid</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="calendar icon"></span>Planer</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="user icon"></span>Anmeldung</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="pen icon"></span>Bewerbung</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="lock icon"></span>Forum</a>
+         <a href="#" class="big primary capitals negative button">
+            <span class="book icon"></span>Archiv</a>
       </nav>
       
       <div id="pushDown"></div>
@@ -55,7 +63,9 @@
                </div>
                
                <div class="row">
-                  <div class="col1"><img class="avatar" src="img/avatar.png" /></div>
+                  <div class="col1">
+                     <img class="avatar" src="img/avatar.png" />
+                  </div>
                   <div class="col3 postInfoName">Themerius</div>
                   <div class="col4">&nbsp;</div>
                   <div class="col4 postInfoDate"><em>verfasst am 2.8.2011 um 21:52 Uhr</em></div>
@@ -268,6 +278,64 @@
                    <div class="row-end">&nbsp;</div>
                </div>
 <!--/-->       </section> <!-- / RAIDPLANER -->
+
+
+<!-- -->       <section id="login"> <!-- LOGIN -->
+               <div class="row">
+                  <h2>Anmeldung</h2>
+               </div>
+
+               <form action="user/doLogin" method="post">
+               <div class="row">
+                  <div class="col2">&nbsp;</div>
+                       <div class="col8">
+                           <h3>Benutzername</h3>
+                       </div>
+                       <div class="col2">&nbsp;</div>
+                       <div class="row-end">&nbsp;</div>
+               </div>
+
+               <div class="row">
+                  <div class="col2">&nbsp;</div>
+                       <div class="col8">
+                           <input class="loginText" type="text" name="username" value="" maxlength="40"/>
+                       </div>
+                       <div class="col2">&nbsp;</div>
+                       <div class="row-end">&nbsp;</div>
+               </div>
+
+               <div class="row">
+                  <div class="col2">&nbsp;</div>
+                       <div class="col8">
+                           <h3>Passwort</h3>
+                       </div>
+                       <div class="col2">&nbsp;</div>
+                       <div class="row-end">&nbsp;</div>
+               </div>
+
+               <div class="row">
+                  <div class="col2">&nbsp;</div>
+                       <div class="col8">
+                           <input class="loginText" type="password" name="password" value="" maxlength="40"/>
+                        </div>
+                       <div class="col2">&nbsp;</div>
+                       <div class="row-end">&nbsp;</div>
+               </div>
+               <br />
+               <div class="row">
+                  <div class="col2">&nbsp;</div>
+                       <div class="col8">
+                           <input class="loginButton" type="submit" value="anmelden!"/>
+                        </div>
+                       <div class="col2">&nbsp;</div>
+                       <div class="row-end">&nbsp;</div>
+               </div>
+               </form>
+
+               <div class="row">
+                  <p>Du hast noch keinen Account und willst Mitglied werden und hast bereits mit uns eine Rücksprache gehalten und kennst somit unseren Zugangsschlüssel, dann kannst du dich <a href='http://nox-obscura.net/register'>registrieren</a>.</p>
+               </div>
+<!--/-->       </section> <!-- / LOGIN -->
 
 
 <!-- -->       <section id="pointsSection"> <!-- POINTS -->
