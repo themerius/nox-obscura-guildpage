@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="raidplanerSection"> <!-- RAIDPLANER -->
                <div class="row">
                   <h2>Raidplaner</h2>
@@ -197,5 +196,4 @@
                    <div class="row-end">&nbsp;</div>
                </div>
 <!--/-->       </section> <!-- / FORMULARS -->
-<%include file="content_foot.mako"/>
 

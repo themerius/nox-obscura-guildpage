@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="controlpanelSection"> <!-- CONTROLPANEL -->
                <div class="row">
                   <h2>Verwaltung</h2>
@@ -156,5 +155,4 @@
                </div>
                </form>
 <!--/-->       </section> <!-- / CONTROLPANEL -->
-<%include file="content_foot.mako"/>
 

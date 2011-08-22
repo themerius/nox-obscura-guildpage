@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="postingSection"> <!-- POSTING -->
                <div class="row">
                   <h2>Beitragsübersicht</h2>
@@ -40,5 +39,4 @@
                    <div class="row-end">&nbsp;</div>
                </div>
 <!--/-->       </section> <!-- / POSTING -->
-<%include file="content_foot.mako"/>
 

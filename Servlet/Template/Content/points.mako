@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="pointsSection"> <!-- POINTS -->
                <div class="row">
                   <h2>Punkte Übersicht</h2>
@@ -53,5 +52,4 @@
                </div>
                <hr />
 <!--/-->       </section> <!-- / POINTS -->
-<%include file="content_foot.mako"/>
 

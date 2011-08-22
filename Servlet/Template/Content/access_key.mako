@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="keySection"> <!-- KEY -->
                <div class="row">
                   <h2>Zugangsschlüssel</h2>
@@ -22,5 +21,4 @@
                    <div class="row-end">&nbsp;</div>
                </div>
 <!--/-->       </section> <!-- / KEY -->
-<%include file="content_foot.mako"/>
 

@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="registerSection"> <!-- REGISTER -->
                <div class="row">
                   <h2>Registrierung</h2>
@@ -110,5 +109,4 @@
                </div>
                </form>
 <!--/-->       </section> <!-- / REGISTER -->
-<%include file="content_foot.mako"/>
 

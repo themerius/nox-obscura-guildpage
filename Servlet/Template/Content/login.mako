@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="login"> <!-- LOGIN -->
                <div class="row">
                   <h2>Anmeldung</h2>
@@ -59,5 +58,4 @@
                   <p>Du hast noch keinen Account und willst Mitglied werden und hast bereits mit uns eine Rücksprache gehalten und kennst somit unseren Zugangsschlüssel, dann kannst du dich <a href='http://nox-obscura.net/register'>registrieren</a>.</p>
                </div>
 <!--/-->       </section> <!-- / LOGIN -->
-<%include file="content_foot.mako"/>
 

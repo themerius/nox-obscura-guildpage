@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="newReplySection"> <!-- NEW REPLY COMMENT -->
                <div class="row">
                   <h2>Kommentar abgeben</h2>
@@ -53,5 +52,4 @@
                </div>
                </form>
 <!--/-->       </section> <!-- / NEW REPLY COMMENT -->
-<%include file="content_foot.mako"/>
 

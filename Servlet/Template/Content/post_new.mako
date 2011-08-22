@@ -2,7 +2,6 @@
    required:
      varName: varType
 </%doc>
-<%include file="content_head.mako"/>
 <!-- -->       <section id="newPostSection"> <!-- NEW POST -->
                <div class="row">
                   <h2>Neuen Beitrag erstellen</h2>
@@ -74,5 +73,4 @@
                </div>
                </form>
 <!--/-->       </section> <!-- / NEW POST -->
-<%include file="content_foot.mako"/>
 
