@@ -1,22 +1,36 @@
 <%doc>
    required:
-      varName: varType
+      cfg_siteUrl: unicode
+      anonymous: bool
 </%doc>
    <div id="wrapper">
       <nav>
-         <a href="#" class="big primary capitals negative button">
+         <a href="${cfg_siteUrl}" 
+            class="big primary capitals negative button">
             <span class="home icon"></span>Start</a>
-         <a href="#" class="big primary capitals negative button">
+         <a href="${cfg_siteUrl}/raid"
+            class="big primary capitals negative button">
             <span class="check icon"></span>Raid</a>
-         <a href="#" class="big primary capitals negative button">
+         <a href="${cfg_siteUrl}/raidplaner"
+            class="big primary capitals negative button">
             <span class="calendar icon"></span>Planer</a>
-         <a href="#" class="big primary capitals negative button">
+         % if anonymous:
+         <a href="${cfg_siteUrl}/login"
+            class="big primary capitals negative button">
             <span class="user icon"></span>Anmeldung</a>
-         <a href="#" class="big primary capitals negative button">
+         % else:
+         <a href="${cfg_siteUrl}/controlcenter"
+            class="big primary capitals negative button">
+            <span class="user icon"></span>Kontrollzentrum</a>
+         % endif
+         <a href="${cfg_siteUrl}/bewerbung"
+            class="big primary capitals negative button">
             <span class="pen icon"></span>Bewerbung</a>
-         <a href="#" class="big primary capitals negative button">
+         <a href="${cfg_siteUrl}/forum"
+            class="big primary capitals negative button">
             <span class="lock icon"></span>Forum</a>
-         <a href="#" class="big primary capitals negative button">
+         <a href="${cfg_siteUrl}/archiv"
+            class="big primary capitals negative button">
             <span class="book icon"></span>Archiv</a>
       </nav>
       

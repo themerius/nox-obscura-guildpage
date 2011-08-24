@@ -35,7 +35,7 @@ class AbstractVisitor(object):
 
     def checkAnonymity(self):
         "False = known, True = unknown"
-        return False
+        return True
 
     def checkPrivileges(self):
         return False

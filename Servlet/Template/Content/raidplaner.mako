@@ -1,167 +1,117 @@
 <%doc>
    required:
-     varName: varType
+     theFirstSixDays: [ [2011,8,23], ...]
+     theFirstSixDaysPrettyPrinted: [ "23.8.2011", ...]
+     theSecondSixDays: ..
+     theSecondSixDaysPrettyPrinted: ...
+     getNameAndTimeForRaid(day): [ "MyName", "19:15" ]
+     admin: bool
+     membersForDay(day):
+         [<Row ... value={'class':"priest", 'role':"roleHeal", 
+            'charName':"Thyphon", 'comment':"Comment"}>, <Row ...>]
 </%doc>
 <!-- -->       <section id="raidplanerSection"> <!-- RAIDPLANER -->
                <div class="row">
                   <h2>Raidplaner</h2>
                </div>
-
+<!-- Date, FirstSixDays -->
                <div class="row">
-                   <div class="col2">2.8.2011</div>
-                   <div class="col2">3.8.2001</div>
-                   <div class="col2">4.8.2001</div>
-                   <div class="col2">5.8.2001</div>
-                   <div class="col2">5.8.2001</div>
-                   <div class="col2">5.8.2001</div>
+                   % for day in theFirstSixDaysPrettyPrinted:
+                   <div class="col2">${day}</div>
+                   % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
+   <!-- Name and Date -->
                <div class="row">
-                   <div class="col2 confirmed">
-                       <p class="priest">
-                           <span class="roleHeal"></span>
-                           Thyphôn
-                           <span class="comment"></span>
-                       </p>
-                       <p class="mage">
-                           <span class="roleDps"></span>
-                           Nisaqui
-                           <span class="comment"></span>
-                       </p>
-                       <p class="warlock">
-                           <span class="roleDps"></span>
-                           Blutgier<span class="comment"></span>
-                       </p>
-                       <p class="paladin">
-                           <span class="roleHeal"></span>
-                           Lêóníx
-                           <span class="comment"></span>
-                       </p>
-                       <p class="deathknight">
-                           <span class="roleDps"></span>
-                           Arben
-                           <span class="comment"></span>
-                       </p>
-                       <p class="paladin">
-                           <span class="roleTank"></span>
-                           Dhraha
-                           <span class="comment"></span>
-                       </p>
-                       <p class="shaman">
-                           <span class="roleHeal"></span>
-                           Lightbeard<span class="comment"></span>
-                       </p>
-                       <p class="warrior">
-                           <span class="roleDps"></span>
-                           Nimmrod
-                           <span class="comment"></span>
-                       </p>
-                       <p class="hunter">
-                           <span class="roleDps"></span>
-                           Thorin
-                           <span class="comment">aber evtl Ping zu hoch (nicht daheim)</span>
-                       </p>
+                   % for day in theFirstSixDays:
+                   <% nameAndDate = getNameAndTimeForRaid(day) %>
+                   <div class="col2">
+                     <strong>${nameAndDate[0]}</strong><br/>
+                     <em>${nameAndDate[1]} 
+                     % if nameAndDate[1] is not "":
+                        Uhr
+                     % endif
+                     </em>
                    </div>
-                   <div class="col2">x</div>
-                   <div class="col2">y</div>
-                   <div class="col2">z</div>
-                   <div class="col2 confirmed"><p class="priest"><span class="roleHeal"></span>Thyphôn<span class="comment">Mein Kommentar kann so lang sein!</span></p></div>
-                   <div class="col2">b</div>
+                   % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
+   <!-- Logons -->
+               <%
+                  logons = ["confirmed", "signed", "substitude", "optout"]
+               %>
+               % for logon in logons:
                <div class="row">
-                   <div class="col2 signed">
-                       <p class="priest">
-                           <span class="roleHeal"></span>
-                           Thyphôn
-                           <span class="comment"></span>
-                       </p>
-                       <p class="mage">
-                           <span class="roleDps"></span>
-                           Nisaqui
-                           <span class="comment"></span>
-                       </p>
-                       <p class="warlock">
-                           <span class="roleDps"></span>
-                           Blutgier<span class="comment"></span>
-                       </p>
-                       <p class="paladin">
-                           <span class="roleHeal"></span>
-                           Lêóníx
-                           <span class="comment"></span>
-                       </p>
-                       <p class="deathknight">
-                           <span class="roleDps"></span>
-                           Arben
-                           <span class="comment"></span>
-                       </p>
-                       <p class="paladin">
-                           <span class="roleTank"></span>
-                           Dhraha
-                           <span class="comment"></span>
-                       </p>
-                       <p class="shaman">
-                           <span class="roleHeal"></span>
-                           Lightbeard<span class="comment"></span>
-                       </p>
-                       <p class="warrior">
-                           <span class="roleDps"></span>
-                           Nimmrod
-                           <span class="comment"></span>
-                       </p>
-                       <p class="hunter">
-                           <span class="roleDps"></span>
-                           Thorin
-                           <span class="comment">aber evtl Ping zu hoch (nicht daheim)</span>
-                       </p>
-                   </div>
-                   <div class="col2">x</div>
-                   <div class="col2">y</div>
-                   <div class="col2">z</div>
-                   <div class="col2 signed">
-                       <p class="priest">
-                           <span class="roleHeal"></span>
-                           Thyphôn
-                           <span class="comment"></span>
-                       </p>
-                   </div>
-                   <div class="col2">b</div>
-                   <div class="row-end">&nbsp;</div>
-               </div>
-               <div class="row">
-                   <div class="col2">c</div>
-                   <div class="col2">x</div>
-                   <div class="col2">y</div>
-                   <div class="col2">z</div>
-                   <div class="col2 substitude">
-                       <p class="priest">
-                           <span class="roleHeal"></span>
-                           Spriest <br />
+                   % for day in theFirstSixDays:
+                   <div class="col2 ${logon}">
+                       % for member in membersForDay(logon, day):
+                       <p class="${member.value['class']}">
+                           <span class="${member.value['role']}"></span>
+                           ${member.value['charName']}
+                           % if admin:
                            <a class="adminConfirmed" href="#">⚑ </a>
                            <a class="adminSigned" href="#">⚑ </a>
                            <a class="adminSubstitude" href="#">⚑ </a>
                            <a class="adminOptout" href="#">⚑ </a>
-                           <span class="comment">Und mein mehrzeiliger Kommentar.</span>
+                           % endif
+                           <span class="comment">${member.value['comment']}</span>
                        </p>
+                      % endfor
                    </div>
-                   <div class="col2">b</div>
+                   % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
+               % endfor
+<!-- Date, SecondSixDays -->
                <div class="row">
-                   <div class="col2">c</div>
-                   <div class="col2">x</div>
-                   <div class="col2">y</div>
-                   <div class="col2">z</div>
-                   <div class="col2 optout">
-                       <p class="priest">
-                           <span class="roleHeal"></span>
-                           Test
-                           <span class="comment"></span>
-                       </p>
-                   </div>
-                   <div class="col2">b</div>
+                   % for day in theSecondSixDaysPrettyPrinted:
+                   <div class="col2">${day}</div>
+                   % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
+   <!-- Name and Date -->
+               <div class="row">
+                   % for day in theSecondSixDays:
+                   <% nameAndDate = getNameAndTimeForRaid(day) %>
+                   <div class="col2">
+                     <strong>${nameAndDate[0]}</strong><br/>
+                     <em>${nameAndDate[1]} 
+                     % if nameAndDate[1] is not "":
+                        Uhr
+                     % endif
+                     </em>
+                   </div>
+                   % endfor
+                   <div class="row-end">&nbsp;</div>
+               </div>
+
+   <!-- Logons -->
+               <%
+                  logons = ["confirmed", "signed", "substitude", "optout"]
+               %>
+               % for logon in logons:
+               <div class="row">
+                   % for day in theSecondSixDays:
+                   <div class="col2 ${logon}">
+                       % for member in membersForDay(logon, day):
+                       <p class="${member.value['class']}">
+                           <span class="${member.value['role']}"></span>
+                           ${member.value['charName']}
+                           % if admin:
+                           <a class="adminConfirmed" href="#">⚑ </a>
+                           <a class="adminSigned" href="#">⚑ </a>
+                           <a class="adminSubstitude" href="#">⚑ </a>
+                           <a class="adminOptout" href="#">⚑ </a>
+                           % endif
+                           <span class="comment">${member.value['comment']}</span>
+                       </p>
+                      % endfor
+                   </div>
+                   % endfor
+                   <div class="row-end">&nbsp;</div>
+               </div>
+               % endfor
+
 <!--/-->       </section> <!-- / RAIDPLANER -->
 
 

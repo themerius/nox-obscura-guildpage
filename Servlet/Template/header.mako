@@ -17,17 +17,25 @@
    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
    
    <!-- Style Sheets -->
-   <link rel="stylesheet" href="${cfg_staticPath}/styleMain.css" media="screen" />
-   <link rel="stylesheet" href="${cfg_staticPath}/css3buttons/stylesheets/css3buttons.css" media="screen">
-   <link rel="stylesheet" href="${cfg_staticPath}/978.css" media="screen">
+   <link rel="stylesheet" href="${cfg_staticPath}/styleMain.css" 
+         media="screen" />
+   <link rel="stylesheet" 
+         href="${cfg_staticPath}/css3buttons/stylesheets/css3buttons.css"
+         media="screen" />
+   <link rel="stylesheet" href="${cfg_staticPath}/978.css"
+         media="screen" />
    
    <!-- Tiny Editor -->
    <script src="${cfg_staticPath}/tinyeditor/tinyeditor.js"></script>
-   <link rel="stylesheet" media="all" href="${cfg_staticPath}/tinyeditor/style.css" />
+   <link rel="stylesheet"
+         href="${cfg_staticPath}/tinyeditor/style.css"
+         media="all" />
    
    <!-- Favicons -->
-   <link rel="shortcut icon" href="${cfg_staticPath}/favicon.ico" />
-   <link rel="apple-touch-icon" href="${cfg_staticPath}/apple-touch-icon.png" />
+   <link rel="shortcut icon" 
+         href="${cfg_staticPath}/favicon.ico" />
+   <link rel="apple-touch-icon"
+         href="${cfg_staticPath}/apple-touch-icon.png" />
 </head>
 
 <body>

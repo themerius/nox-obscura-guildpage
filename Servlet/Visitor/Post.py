@@ -50,6 +50,8 @@ class Post(AbstractVisitor):
             lookup=self.templateLookup)
         output = myTmpl.render_unicode(
             title="Nox Obscura: Die Gilde",
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
             cfg_staticPath=self.cfg.cfg_staticPath)
         return output
 

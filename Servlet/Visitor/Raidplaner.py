@@ -4,6 +4,10 @@
 # ---------------------
 
 from Servlet.Visitor import AbstractVisitor
+from Servlet.Database.DataRaid import DataRaid
+
+from mako.template import Template
+import calendar, time
 
 class Raidplaner(AbstractVisitor):
     """
@@ -28,8 +32,56 @@ class Raidplaner(AbstractVisitor):
         # Do inheritance Stuff:
         AbstractVisitor.__init__(self)
         # Own Stuff:
+        # calculate Today:
+        t = time.localtime() # time-struct.
+        self.today = []
+        self.today.append(t.tm_year)
+        self.today.append(t.tm_mon)
+        self.today.append(t.tm_mday)
+        self.today.append(t.tm_hour)
+        self.today.append(t.tm_min)
+        self.today.append(t.tm_sec) # Save Dates in right order.
+
+    def prettyPrintDate(self, x): # for functional map()
+        dayNames = ["Mo, ", "Di, ", "Mi, ", "Do, ", "Fr, ", "Sa, ", "So, "]
+        n = calendar.weekday(x[0], x[1], x[2])
+        return dayNames[n] + unicode(x[2]) + "." + unicode(x[1]) + "." + unicode(x[0])
+
+    def theNextTwelveDays(self):
+        """Returns a List with Dates. Today is head and followed by the
+        next 5 following dates. E.g.:
+        [ [2011, 8, 23], ..., [2011,8,28] ]"""
+        year = self.today[0]
+        month = self.today[1]
+        day = self.today[2]
+        # Next 11 days, relative to today:
+        c = calendar.monthcalendar(year, month)
+        twelveDays = []
+        for week in c:
+            for iterDay in week:
+                if (iterDay != 0) and (iterDay >= day and iterDay < day+12):
+                    twelveDays.append( [year, month, iterDay] )
+        if twelveDays.__len__() < 12: # Some days miss
+            if month == 12: # Jump to the new Year
+                year += 1
+                cc = calendar.monthcalendar(year, 1)
+            else: # If it's not year, then jump to the next Month
+                month += 1
+                cc = calendar.monthcalendar(year, month)
+            for week in cc:
+                for iterDay in week:
+                    if (twelveDays.__len__() == 12): # enough days
+                        break
+                    if iterDay is not 0:
+                        twelveDays.append( [year, month, iterDay] )
+        if twelveDays.__len__() == 12:
+            return twelveDays
+        else:
+            return False
 
     def raidplaner(self):
+        days = self.theNextTwelveDays()
+        data = DataRaid()
         myTmpl = Template(
             """<%include file="header.mako"/>
                <%include file="menu.mako"/>
@@ -40,7 +92,16 @@ class Raidplaner(AbstractVisitor):
                <%include file="footer.mako"/>""",
             lookup=self.templateLookup)
         output = myTmpl.render_unicode(
-            title="Nox Obscura: Die Gilde",
-            cfg_staticPath=self.cfg.cfg_staticPath)
+            title="Nox Obscura: Raidplaner",
+            cfg_staticPath=self.cfg.cfg_staticPath,
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
+            theFirstSixDays=days[0:6],
+            theFirstSixDaysPrettyPrinted=map(self.prettyPrintDate, days[0:6]),
+            theSecondSixDays=days[6:12],
+            theSecondSixDaysPrettyPrinted=map(self.prettyPrintDate, days[6:12]),
+            getNameAndTimeForRaid=data.getNameAndTimeForRaid,
+            admin=self.privileged,
+            membersForDay=data.getLogonForRaidDate)
         return output
 
