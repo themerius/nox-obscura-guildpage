@@ -19,7 +19,7 @@
             class="big primary capitals negative button">
             <span class="user icon"></span>Anmeldung</a>
          % else:
-         <a href="${cfg_siteUrl}/controlcenter"
+         <a href="${cfg_siteUrl}/controlpanel"
             class="big primary capitals negative button">
             <span class="user icon"></span>Kontrollzentrum</a>
          % endif

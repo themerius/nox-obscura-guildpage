@@ -1,6 +1,8 @@
 <%doc>
    required:
-     varName: varType
+     userInfo: {'_id': '', 'admin': False, 'characterList': [], 
+                'dkp': 0, 'email': '', 'realname': '', 'session': ''}
+     admin: bool
 </%doc>
 <!-- -->       <section id="controlpanelSection"> <!-- CONTROLPANEL -->
                <div class="row">
@@ -9,7 +11,7 @@
                
                <div class="row">
                   <h3>Willkommen XY!</h3>
-                     <p>Du bist momentan mit der Session 862c1488cabc4d9e91714303f6baebff angemeldet. Die Session ist ab dem Zeitpunkt des Logins 60 Minuten gültig. Änderungen dieses Intervalls bzw. eine manuelle Logout-Funktion werden noch realisiert.</p>
+                     <p>Du bist momentan mit der Session ${userInfo['session']} angemeldet. Die Session ist ab dem Zeitpunkt des Logins 60 Minuten gültig. Änderungen dieses Intervalls bzw. eine manuelle Logout-Funktion werden noch realisiert.</p>
                   <h3>Deine Daten</h3>
                      <p>Solltest du den Wunsch haben, deine Daten zu ändern, wende dich an eine Person im Impressum. Passwortänderungen sind über diesen Weg auch möglich, noch ist keine Passwort-Änderungsfunktion bzw. Passwort-Wiederherstellungsfunktion realisiert.</p>
                </div>
@@ -17,53 +19,39 @@
                <div class="row">
                    <div class="col1">&nbsp;</div>
                    <div class="col3">Nutzername</div>
-                   <div class="col3"><strong>Themerius</strong></div>
+                   <div class="col3"><strong>${userInfo['_id']}</strong></div>
                    <div class="col5">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
                </div>
                <div class="row">
                    <div class="col1">&nbsp;</div>
                    <div class="col3">E-Mail-Adresse</div>
-                   <div class="col3"><strong>sven.hodapp@gmail.com</strong></div>
+                   <div class="col3"><strong>${userInfo['email']}</strong></div>
                    <div class="col5">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
                </div>
                <div class="row">
                    <div class="col1">&nbsp;</div>
                    <div class="col3">Punktestand</div>
-                   <div class="col3"><strong>333</strong></div>
+                   <div class="col3"><strong>${userInfo['dkp']}</strong></div>
                    <div class="col5">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
                </div>
                
                <h3>Deine Charaktere</h3>
+               <% count = 0 %>
+               % for char in userInfo['characterList']:
+               <% count += 1 %>
                <div class="row">
                    <div class="col1">&nbsp;</div>
-                   <div class="col1">1</div>
-                   <div class="col2"><strong>Dhraha</strong></div>
-                   <div class="col3">ein Draenei <em>Paladin</em></div>
-                   <div class="col3">mit der Primärrolle als <em>Tank</em></div>
+                   <div class="col1">${count}</div>
+                   <div class="col2"><strong>${char['name']}</strong></div>
+                   <div class="col3">ein ${char['race']} <em>${char['class']}</em></div>
+                   <div class="col3">mit der Primärrolle als <em>${char['role']}</em></div>
                    <div class="col2">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
                </div>
-               <div class="row">
-                   <div class="col1">&nbsp;</div>
-                   <div class="col1">2</div>
-                   <div class="col2"><strong>Themerius</strong></div>
-                   <div class="col3">ein Nachtelf <em>Druide</em></div>
-                   <div class="col3">mit der Primärrolle als <em>Heiler</em></div>
-                   <div class="col2">&nbsp;</div>
-                   <div class="row-end">&nbsp;</div>
-               </div>
-               <div class="row">
-                   <div class="col1">&nbsp;</div>
-                   <div class="col1">3</div>
-                   <div class="col2"><strong>Quis</strong></div>
-                   <div class="col3">ein Mensch <em>Magier</em></div>
-                   <div class="col3">mit der Primärrolle als <em>DPS</em></div>
-                   <div class="col2">&nbsp;</div>
-                   <div class="row-end">&nbsp;</div>
-               </div>
+               % endfor
                <br />
                <form action="user/addCharacter" method="post">
                <div class="row">
@@ -112,7 +100,7 @@
                    <div class="row-end">&nbsp;</div>
                </div>
                </form>
-               
+               % if admin:
                <div class="row">
                   <h3>Adminrechte</h3>
                   <h4>Neue Raidtermine anlegen</h4>
@@ -132,7 +120,7 @@
                    <div class="col1">&nbsp;</div>
                    <div class="col2"><strong>Zeitpunkt</strong></div>
                    <div class="col3">
-                       <input type="text" name="date" value="" size="2" maxlength="2"/> : <input type="text" name="date" value="" size="2" maxlength="2"/> Uhr
+                       <input type="text" name="date" value="19" size="2" maxlength="2"/> : <input type="text" name="date" value="15" size="2" maxlength="2"/> Uhr
                    </div>
                    <div class="col6">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
@@ -141,7 +129,11 @@
                    <div class="col1">&nbsp;</div>
                    <div class="col2"><strong>am</strong></div>
                    <div class="col5">
-                       <input type="text" name="date" value="" size="2" maxlength="2"/> (Tag) <input type="text" name="date" value="" size="2" maxlength="2"/> (Monat) <input type="text" name="date" value="" size="4" maxlength="4"/> (Jahr)
+                       <%
+                           import time
+                           t = time.localtime()
+                       %>
+                       <input type="text" name="date" value="" size="2" maxlength="2"/> (Tag) <input type="text" name="date" value="${t.tm_mon}" size="2" maxlength="2"/> (Monat) <input type="text" name="date" value="${t.tm_year}" size="4" maxlength="4"/> (Jahr)
                    </div>
                    <div class="col4">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
@@ -154,5 +146,6 @@
                    <div class="row-end">&nbsp;</div>
                </div>
                </form>
+               % endif
 <!--/-->       </section> <!-- / CONTROLPANEL -->
 

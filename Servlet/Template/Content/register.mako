@@ -43,14 +43,14 @@
                <div class="row">
                    <div class="col1">&nbsp;</div>
                    <div class="col3">Passwort</div>
-                   <div class="col3"><input class="text" type="text" name="passworda" value="" size="25" maxlength="40"/></div>
+                   <div class="col3"><input class="text" type="password" name="password" value="" size="25" maxlength="40"/></div>
                    <div class="col5"><em>Wähle ein möglichst sicheres Passwort!</em></div>
                    <div class="row-end">&nbsp;</div>
                </div>
                <div class="row">
                    <div class="col1">&nbsp;</div>
                    <div class="col3">Passwort wiederholen</div>
-                   <div class="col3"><input class="text" type="text" name="passwordb" value="" size="25" maxlength="40"/></div>
+                   <div class="col3"><input class="text" type="password" name="password" value="" size="25" maxlength="40"/></div>
                    <div class="col5">&nbsp;</div>
                    <div class="row-end">&nbsp;</div>
                </div>

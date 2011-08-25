@@ -1,6 +1,6 @@
 <%doc>
    required:
-     varName: varType
+     cfg_siteUrl: string
 </%doc>
 <!-- -->       <section id="login"> <!-- LOGIN -->
                <div class="row">
@@ -55,7 +55,7 @@
                </form>
 
                <div class="row">
-                  <p>Du hast noch keinen Account und willst Mitglied werden und hast bereits mit uns eine Rücksprache gehalten und kennst somit unseren Zugangsschlüssel, dann kannst du dich <a href='http://nox-obscura.net/register'>registrieren</a>.</p>
+                  <p>Du hast noch keinen Account und willst Mitglied werden und hast bereits mit uns eine Rücksprache gehalten und kennst somit unseren Zugangsschlüssel, dann kannst du dich <a href='${cfg_siteUrl}/register'>registrieren</a>.</p>
                </div>
 <!--/-->       </section> <!-- / LOGIN -->
 
