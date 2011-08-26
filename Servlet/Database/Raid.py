@@ -41,13 +41,29 @@ class DataRaid(AbstractData):
                 'type': 'raidLogon'}
         view = self.readView("raids-3", key=[raidId,username])
         if view: # Only change Logon
-            self.changeEntireEntry(view[0].id, data)
+            if self.changeEntireEntry(view[0].id, data):
+                return True
+            else:
+                return False
         else: # Create New Entry
             counter = self.readEntry('counter')
             counter = counter['logonCounter']
             newEntry = self.createNewEntry(data, "logon"+str(counter))
             if newEntry:
                 self.changeOneEntry('counter', 'logonCounter', counter+1)
+                return True
+            else:
+                return False
+
+    def changeLogon(self, raidId, username, logon):
+        view = self.readView("raids-3", key=[raidId,username])
+        if view:
+            if self.changeOneEntry(view[0].value['_id'], 'state', logon):
+                return True
+            else:
+                return False
+        else:
+            return False
 
     def getLogonForRaidDate(self, logon, raidDate):
         view = self.readView('raids-2', key=raidDate)
@@ -71,3 +87,26 @@ class DataRaid(AbstractData):
             return [name, time]
         else:
             return ["", ""]
+
+    def getFormularInfosForRaid(self, username, raidDate):
+        raidId = self.readView('raids-2', key=raidDate)
+        if raidId:
+            raidId = raidId[0].value
+            # Get users Characternames
+            viewCharList = self.readViewWithOtherDb('users-1', self.users, key=username)
+            if not viewCharList:
+                return {'state': '', 'charNames': [''], 'raidId': '', 'comment': ''}
+            charList = viewCharList[0].value
+            charNames = []
+            for char in charList:
+                charNames.append(char['name'])
+            # User already set an logon?
+            viewState = self.readView('raids-3', key=[raidId, username])
+            if viewState:
+                state = viewState[0].value['state']
+                comment = viewState[0].value['comment']
+                return {'state': state, 'charNames': charNames, 'raidId': raidId, 'comment': comment}
+            else:
+                return {'state': '', 'charNames': charNames, 'raidId': raidId, 'comment': ''}
+        else: # No Raid at this date.
+            return {'state': '', 'charNames': [''], 'raidId': '', 'comment': ''}

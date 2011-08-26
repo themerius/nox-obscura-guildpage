@@ -65,6 +65,36 @@ class AbstractVisitor(object):
         else:
             return False
 
+    def toCssAttr(self, x):
+        if x == "Tank":
+            return "roleTank"
+        elif x == "Heiler":
+            return "roleHeal"
+        elif x == "Dps":
+            return "roleDps"
+        elif x == "Paladin":
+            return "paladin"
+        elif x == "Druide":
+            return "druid"
+        elif x == "Magier":
+            return "mage"
+        elif x == u"Jäger":
+            return "hunter"
+        elif x == "Schurke":
+            return "rogue"
+        elif x == "Hexenmeister":
+            return "warlock"
+        elif x == "Priester":
+            return "priest"
+        elif x == "Schamane":
+            return "shaman"
+        elif x == "Todesritter":
+           return "deathknight"
+        elif x == "Krieger":
+           return "warrior"
+        else:
+           return "?"
+
     def errorPage(self, err):
         myTmpl = Template(
             """<%include file="header.mako"/>

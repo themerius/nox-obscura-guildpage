@@ -95,7 +95,8 @@ class Main(object):
             '5': u"Dafür brauchst du Adminrechte!! Verdammt noch eins!",
             '6': u"Du brauchst dafür das Geheimnis!",
             '7': u"Die Passwörter waren leider nicht identisch!",
-            '8': u"Der neue Benutzer konnte leider nicht erfolgreich angelegt werden. Frag mal einem Admin, was los ist. :(" }
+            '8': u"Der neue Benutzer konnte leider nicht erfolgreich angelegt werden. Frag mal einem Admin, was los ist. :(",
+            '9': "Anmeldung zum Raid schlug fehl. :(" }
         try:
             errMsg = errMsg[err]
         except:

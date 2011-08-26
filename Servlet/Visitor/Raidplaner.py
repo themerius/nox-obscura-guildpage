@@ -5,6 +5,7 @@
 
 from Servlet.Visitor import AbstractVisitor
 from Servlet.Database.Raid import DataRaid
+from Servlet.Database.User import DataUser
 
 from mako.template import Template
 import calendar, time
@@ -32,6 +33,8 @@ class Raidplaner(AbstractVisitor):
         # Do inheritance Stuff:
         AbstractVisitor.__init__(self)
         # Own Stuff:
+        # DataRaid Instance:
+        self.data = DataRaid()
         # calculate Today:
         t = time.localtime() # time-struct.
         self.today = []
@@ -79,9 +82,16 @@ class Raidplaner(AbstractVisitor):
         else:
             return False
 
+    def getUsernamesAndPoints(self):
+        data = DataUser()
+        return data.getUsernamesAndPoints()
+
+    def getFormularInfos(self, day):
+        return self.data.getFormularInfosForRaid(self.username, day)
+
     def raidplaner(self):
         days = self.theNextTwelveDays()
-        data = DataRaid()
+        data = self.data
         myTmpl = Template(
             """<%include file="header.mako"/>
                <%include file="menu.mako"/>
@@ -102,6 +112,9 @@ class Raidplaner(AbstractVisitor):
             theSecondSixDaysPrettyPrinted=map(self.prettyPrintDate, days[6:12]),
             getNameAndTimeForRaid=data.getNameAndTimeForRaid,
             admin=self.privileged,
-            membersForDay=data.getLogonForRaidDate)
+            membersForDay=data.getLogonForRaidDate,
+            getFormularInfos=self.getFormularInfos,
+            usernamesAndPoints=self.getUsernamesAndPoints(),
+            toCssAttr=self.toCssAttr)
         return output
 

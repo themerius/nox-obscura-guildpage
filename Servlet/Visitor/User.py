@@ -157,6 +157,61 @@ class User(AbstractVisitor):
                 admin=self.privileged)
             return output
 
+    def translateCharList(self, username, usersCharacter):
+        cl = DataUser()
+        cl = cl.getUsersCharacterList(username, usersCharacter)
+        l = [ cl['role'], cl['class'] ]
+        return map(self.toCssAttr, l)
+
+    @expose()
+    def newOrChangeRaidLogon(self, usersCharacter, logon, comment, raidId):
+        self.__init__()
+        if self.anonymous:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=4", 303)
+        roleAndClass = self.translateCharList(self.username,
+            usersCharacter)
+        data = DataRaid()
+        data = data.newOrChangeRaidLogon(raidId, self.username,
+            usersCharacter, logon, comment, roleAndClass[0],
+            roleAndClass[1])
+        if data:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/raidplaner", 303)
+        else:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=9", 303)
+
+    @expose()
+    def setLogon(self, raidId, username, logonState):
+        self.__init__()
+        if not self.privileged:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=5", 303)
+        data = DataRaid()
+        data = data.changeLogon(raidId, username, logonState)
+        if data:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/raidplaner", 303)
+        else:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=9", 303)
+
+    @expose()
+    def manipulatePoints(self, username, points):
+        self.__init__()
+        if not self.privileged:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=5", 303)
+        data = DataUser()
+        if ( type(username) and type(points) ) is list:
+            for i in range( username.__len__() ):
+                data.manipulatePoints( username[i], int(points[i]) )
+        else:
+            data.manipulatePoints( username, int(points) )
+        raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/raidplaner", 303)
+
     @expose()
     def regUser(self, username, realname, email, password,
                 charname, class_, race, role):

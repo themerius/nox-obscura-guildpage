@@ -7,11 +7,14 @@ import couchdb # minimal Version 0.8.
 from Servlet import site_cfg as cfg
 
 viewDict = {
+# User Views:
+ 'users-1': 'dev/getCharList', # username, charList
+ 'users-2': 'dev/points', # points, {'username':, 'charList':}
 # Raids Views:
  'raids-1': 'dev/raidEvent', # [2011,8,24]
  'raids-2': 'dev/getDateAndRaidId', # [date], raidId
  'raids-3': 'dev/logonRaidIdUsername', # [raidId, username], doc
- 'raids-4': 'dev/getRaidIdAndUserstate' # [raidId,logonState], {'class':,'role':,'charName':, 'comment':}
+ 'raids-4': 'dev/getRaidIdAndUserstate' # [raidId,logonState], {'class':,'role':,'charName':, 'comment':, 'raidId':, 'username':}
 # Post Views:
 }
 
@@ -50,9 +53,21 @@ class AbstractData(object):
         parameters:
             view: the view name from viewList.
             args: for the view"""
+        return self.readViewWithOtherDb(viewKey, self.myDefaultDb, **args)
+
+    def readViewWithOtherDb(self, viewKey, myDb, **args):
+        """Holds a List of Views,
+        you can access all Views from this Function.
+
+        returns:
+            all rows of the selected view.
+
+        parameters:
+            view: the view name from viewList.
+            args: for the view"""
         view = viewDict[viewKey]
         if view:
-            db = self.myDefaultDb
+            db = myDb
             result = db.view(view, **args)
         else:
             raise Data.NoSuchView()

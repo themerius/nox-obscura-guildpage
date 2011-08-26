@@ -8,7 +8,10 @@
      admin: bool
      membersForDay(day):
          [<Row ... value={'class':"priest", 'role':"roleHeal", 
-            'charName':"Thyphon", 'comment':"Comment"}>, <Row ...>]
+            'charName':"Thyphon", 'comment':"Comment", 
+            'raidId': "eventX", 'username': "Logonname"}>, <Row ...>]
+     getFormularInfos(day): {'state': 'signed', 'charNames': ['Char1', ..], 'raidId': '..', 'comment': '..'}
+     cfg_siteUrl: string
 </%doc>
 <!-- -->       <section id="raidplanerSection"> <!-- RAIDPLANER -->
                <div class="row">
@@ -43,25 +46,77 @@
                % for logon in logons:
                <div class="row">
                    % for day in theFirstSixDays:
+                   <% members = membersForDay(logon, day) %>
+                   % if members:
                    <div class="col2 ${logon}">
-                       % for member in membersForDay(logon, day):
+                   % else:
+                   <div class="col2">&nbsp;
+                   % endif
+                       % for member in members:
                        <p class="${member.value['class']}">
                            <span class="${member.value['role']}"></span>
                            ${member.value['charName']}
                            % if admin:
-                           <a class="adminConfirmed" href="#">⚑ </a>
-                           <a class="adminSigned" href="#">⚑ </a>
-                           <a class="adminSubstitude" href="#">⚑ </a>
-                           <a class="adminOptout" href="#">⚑ </a>
+                           <br />
+                           <a class="adminConfirmed" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/confirmed">⚑</a>
+                           <a class="adminSigned" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/signed">⚑</a>
+                           <a class="adminSubstitude" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/substitude">⚑</a>
+                           <a class="adminOptout" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/optout">⚑</a>
                            % endif
                            <span class="comment">${member.value['comment']}</span>
                        </p>
-                      % endfor
+                       % endfor
                    </div>
                    % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
                % endfor
+
+   <!-- -->    <section class="formularSection"> <!-- FORMULARS -->
+               <div class="row">
+                   % for day in theFirstSixDays:
+                   <% formularInfos = getFormularInfos(day) %>
+                   % if formularInfos['raidId'] != '':
+                   <div class="col2">
+                       <form action="user/newOrChangeRaidLogon" method="post"> 
+                       <p>
+                       <select name="usersCharacter" size="1">
+                           % for char in formularInfos['charNames']:
+                           <option>${char}</option>
+                           % endfor
+                       </select>
+                       </p>
+                       <p> 
+                       <input type="radio" name="logon" value="signed"
+                        % if formularInfos['state'] == 'signed':
+                        checked="checked"
+                        % endif
+                        /> Anmelden<br/> 
+                       <input type="radio" name="logon" value="substitude"
+                        % if formularInfos['state'] == 'substitude':
+                        checked="checked"
+                        % endif
+                        /> Ersatzbank<br/> 
+                       <input type="radio" name="logon" value="optout"
+                        % if formularInfos['state'] == 'optout':
+                        checked="checked"
+                        % endif
+                        /> Abmelden<br/> 
+                       <input type="hidden" name="raidId" value="${formularInfos['raidId']}"/>
+                       </p>
+                       <p>Kommentar<br/>
+                       <input class="text" type="text" name="comment" value="${formularInfos['comment']}" maxlength="140"/> 
+                       </p>
+                       <p><input class="button" type="submit" value="Bestätigen"/></p>
+                       </form>
+                  </div>
+                  %endif
+                  %endfor
+                  <div class="row-end">&nbsp;</div>
+               </div>
+   <!--/-->    </section> <!-- / FORMULARS -->
+
+
 <!-- Date, SecondSixDays -->
                <div class="row">
                    % for day in theSecondSixDaysPrettyPrinted:
@@ -84,7 +139,6 @@
                    % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
-
    <!-- Logons -->
                <%
                   logons = ["confirmed", "signed", "substitude", "optout"]
@@ -92,58 +146,73 @@
                % for logon in logons:
                <div class="row">
                    % for day in theSecondSixDays:
+                   <% members = membersForDay(logon, day) %>
+                   % if members:
                    <div class="col2 ${logon}">
-                       % for member in membersForDay(logon, day):
+                   % else:
+                   <div class="col2">&nbsp;
+                   % endif
+                       % for member in members:
                        <p class="${member.value['class']}">
                            <span class="${member.value['role']}"></span>
                            ${member.value['charName']}
                            % if admin:
-                           <a class="adminConfirmed" href="#">⚑ </a>
-                           <a class="adminSigned" href="#">⚑ </a>
-                           <a class="adminSubstitude" href="#">⚑ </a>
-                           <a class="adminOptout" href="#">⚑ </a>
+                           <br />
+                           <a class="adminConfirmed" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/confirmed">⚑</a>
+                           <a class="adminSigned" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/signed">⚑</a>
+                           <a class="adminSubstitude" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/substitude">⚑</a>
+                           <a class="adminOptout" href="${cfg_siteUrl}/user/setLogon/${member.value['raidId']}/${member.value['username']}/optout">⚑</a>
                            % endif
                            <span class="comment">${member.value['comment']}</span>
                        </p>
-                      % endfor
+                       % endfor
                    </div>
                    % endfor
                    <div class="row-end">&nbsp;</div>
                </div>
                % endfor
 
-<!--/-->       </section> <!-- / RAIDPLANER -->
-
-
-<!-- -->       <section id="formularSection"> <!-- FORMULARS -->
+   <!-- -->    <section class="formularSection"> <!-- FORMULARS -->
                <div class="row">
-                  <h2>Raidplaner</h2>
-               </div>
-
-               <div class="row">
+                   % for day in theSecondSixDays:
+                   <% formularInfos = getFormularInfos(day) %>
+                   % if formularInfos['raidId'] != '':
                    <div class="col2">
-                       <form action="user/manipulateUserCharacterOnRaid" method="post"> 
+                       <form action="user/newOrChangeRaidLogon" method="post"> 
                        <p>
-                       <select name="usersCharacter2" size="1">
-                           <option>Dhraha</option>
-                           <option>Themerius</option>
-                           <option>Quis</option>
+                       <select name="usersCharacter" size="1">
+                           % for char in formularInfos['charNames']:
+                           <option>${char}</option>
+                           % endfor
                        </select>
                        </p>
                        <p> 
-                       <input type="radio" name="logon2" value="signed" checked="checked" /> Anmelden<br/> 
-                       <input type="radio" name="logon2" value="substitude" /> Ersatzbank<br/> 
-                       <input type="radio" name="logon2" value="optout" /> Abmelden<br/> 
-                       <input type="hidden" name="id_2" value="48"/>
+                       <input type="radio" name="logon" value="signed"
+                        % if formularInfos['state'] == 'signed':
+                        checked="checked"
+                        % endif
+                        /> Anmelden<br/> 
+                       <input type="radio" name="logon" value="substitude"
+                        % if formularInfos['state'] == 'substitude':
+                        checked="checked"
+                        % endif
+                        /> Ersatzbank<br/> 
+                       <input type="radio" name="logon" value="optout"
+                        % if formularInfos['state'] == 'optout':
+                        checked="checked"
+                        % endif
+                        /> Abmelden<br/> 
+                       <input type="hidden" name="raidId" value="${formularInfos['raidId']}"/>
                        </p>
                        <p>Kommentar<br/>
-                       <input class="text" type="text" name="comment2" value="" maxlength="40"/> 
+                       <input class="text" type="text" name="comment" value="${formularInfos['comment']}" maxlength="140"/> 
                        </p>
                        <p><input class="button" type="submit" value="Bestätigen"/></p>
                        </form>
-                   </div>
-                   <div class="col10"></div>
-                   <div class="row-end">&nbsp;</div>
+                  </div>
+                  %endif
+                  %endfor
+                  <div class="row-end">&nbsp;</div>
                </div>
-<!--/-->       </section> <!-- / FORMULARS -->
+   <!--/-->    </section> <!-- / FORMULARS -->
 
