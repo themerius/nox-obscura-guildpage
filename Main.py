@@ -35,6 +35,7 @@ class Main(object):
     def __init__(self):
         # Other Classes to expose.
         self.user = User()
+        self.post = Post()
 
     @expose()
     def index(self):
@@ -96,7 +97,8 @@ class Main(object):
             '6': u"Du brauchst dafür das Geheimnis!",
             '7': u"Die Passwörter waren leider nicht identisch!",
             '8': u"Der neue Benutzer konnte leider nicht erfolgreich angelegt werden. Frag mal einem Admin, was los ist. :(",
-            '9': "Anmeldung zum Raid schlug fehl. :(" }
+            '9': "Anmeldung zum Raid schlug fehl. :(",
+            '10': "Die Nachricht zu schreiben schlug fehl." }
         try:
             errMsg = errMsg[err]
         except:

@@ -1,6 +1,12 @@
 <%doc>
    required:
-     varName: varType
+     postList: [<Row _id=, key=, value={'_id':, 'content':, 'username':,
+                  'dateAndTime':, 'category':, 'title':}>,
+                <Row ...>, ...]
+     getCommentCount(postId): int
+     cfg_siteUrl: string
+     prettyPrintDate(x): def
+     prettyPrintTime(x): def
 </%doc>
 <!-- -->       <section id="postingSection"> <!-- POSTING -->
                <div class="row">
@@ -14,29 +20,19 @@
                    <div class="col2 postOverviewDate"><h3>Verfasster</h3></div>
                    <div class="row-end">&nbsp;</div>
                </div>
-               
+               % for post in postList:
+               <% print post %>
                <div class="row postStretch">
-                   <div class="col5"><a href="#">Mein wichtiges Thema</a></div>
-                   <div class="col2">5</div>
-                   <div class="col3 postOverviewDate">9.8.2011, 19:43 Uhr</div>
-                   <div class="col2 postOverviewDate">Themerius</div>
+                   <div class="col5"><a href="${cfg_siteUrl}/post/view/${post.value['_id']}">${post.value['title']}</a></div>
+                   <div class="col2">${getCommentCount(post.value['_id'])}</div>
+                   <%
+                     date = prettyPrintDate(post.value['dateAndTime'][0:3])
+                     time = prettyPrintTime(post.value['dateAndTime'][3:5])
+                   %>
+                   <div class="col3 postOverviewDate">${date}, ${time} Uhr</div>
+                   <div class="col2 postOverviewDate">${post.value['username']}</div>
                    <div class="row-end">&nbsp;</div>
                </div>
-               
-               <div class="row postStretch">
-                   <div class="col5"><a href="#">Großoffensive</a></div>
-                   <div class="col2">5</div>
-                   <div class="col3 postOverviewDate">9.8.2011, 19:43 Uhr</div>
-                   <div class="col2 postOverviewDate">Themerius</div>
-                   <div class="row-end">&nbsp;</div>
-               </div>
-               
-               <div class="row postStretch">
-                   <div class="col5"><a href="#">Ein anderes Thema mit längerem Titel</a></div>
-                   <div class="col2">5</div>
-                   <div class="col3 postOverviewDate">9.8.2011, 19:43 Uhr</div>
-                   <div class="col2 postOverviewDate">Themerius</div>
-                   <div class="row-end">&nbsp;</div>
-               </div>
+               % endfor
 <!--/-->       </section> <!-- / POSTING -->
 

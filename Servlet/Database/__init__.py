@@ -14,8 +14,10 @@ viewDict = {
  'raids-1': 'dev/raidEvent', # [2011,8,24]
  'raids-2': 'dev/getDateAndRaidId', # [date], raidId
  'raids-3': 'dev/logonRaidIdUsername', # [raidId, username], doc
- 'raids-4': 'dev/getRaidIdAndUserstate' # [raidId,logonState], {'class':,'role':,'charName':, 'comment':, 'raidId':, 'username':}
+ 'raids-4': 'dev/getRaidIdAndUserstate', # [raidId,logonState], {'class':,'role':,'charName':, 'comment':, 'raidId':, 'username':}
 # Post Views:
+ 'posts-1': 'dev/getPosts', # [category, dateAndTime], doc
+ 'posts-2': 'dev/getComments' # [postId, dateAndTime], doc
 }
 
 class AbstractData(object):

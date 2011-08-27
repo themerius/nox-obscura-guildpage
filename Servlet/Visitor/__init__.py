@@ -65,6 +65,18 @@ class AbstractVisitor(object):
         else:
             return False
 
+    def calculateToday(self):
+        import time
+        t = time.localtime() # time-struct.
+        today = []
+        today.append(t.tm_year)
+        today.append(t.tm_mon)
+        today.append(t.tm_mday)
+        today.append(t.tm_hour)
+        today.append(t.tm_min)
+        today.append(t.tm_sec) # Save Dates in right order.
+        return today
+
     def toCssAttr(self, x):
         if x == "Tank":
             return "roleTank"

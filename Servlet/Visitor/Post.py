@@ -4,9 +4,11 @@
 # ---------------------
 
 from Servlet.Visitor import AbstractVisitor
+from Servlet.Database.Post import DataPost
 
 from mako.template import Template
 from cherrypy import expose
+import cherrypy
 
 class Post(AbstractVisitor):
     """
@@ -25,19 +27,85 @@ class Post(AbstractVisitor):
         AbstractVisitor.__init__(self)
         # Own Stuff:
 
-    def view(self):
-        return 0
+    def prettyPrintDate(self, x):
+        return unicode(x[2]) + "." + unicode(x[1]) + "." + unicode(x[0])
 
-    def new(self):
-        return 0
+    def prettyPrintTime(self, x):
+        if x[0] in range(0, 9):
+            hour = "0" + unicode(x[0])
+        else:
+            hour = unicode(x[0])
+        if x[1] in range(0, 9):
+            minute = "0" + unicode(x[1])
+        else:
+            minute = unicode(x[1])
+        return hour + ":" + minute
 
-    def newCommentOnPost(self):
-        return 0
+    @expose()
+    def view(self, _id):
+        self.__init__()
+        data = DataPost()
+        post_ = data.getPost(_id)
+        if post_:
+            if post_['category'] == 'forum' or post_['category'] == 'archiv':
+                if self.anonymous:
+                    raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                        "/fehler?err=4", 303)
+            else:
+                myTmpl = Template(
+                    """<%include file="header.mako"/>
+                       <%include file="menu.mako"/>
+                       <%include file="content_head.mako"/>
+                       <%include file="post.mako"/>
+                       <%include file="post_comment.mako"/>
+                       <%include file="content_foot.mako"/>
+                       <%include file="footer.mako"/>""",
+                    lookup=self.templateLookup)
+        output = myTmpl.render_unicode(
+            title="Nox Obscura: Die Gilde",
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
+            cfg_staticPath=self.cfg.cfg_staticPath,
+            post=post_,
+            comments=data.getCommentsForPost(_id),
+            prettyPrintDate=self.prettyPrintDate,
+            prettyPrintTime=self.prettyPrintTime,
+            postId=_id)
+        return output
 
-    def sendMail(self):
-        return 0
+    @expose()
+    def new(self, category, title, postId, content):
+        self.__init__()
+        if self.anonymous:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=4", 303)
+        data = DataPost()
+        newOk = data.createNewPost(postId, title, content, self.username, self.calculateToday(), category)
+        if newOk:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/post/view/"+postId, 303)
+        else:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=10", 303)
+
+    @expose()
+    def newComment(self, postId, content):
+        self.__init__()
+        if self.anonymous:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=4", 303)
+        data = DataPost()
+        newCom = data.createNewComment(self.username, self.calculateToday(), postId, content)
+        if newCom:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/post/view/"+postId, 303)
+        else:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                "/fehler?err=10", 303)
 
     def startPage(self):
+        category_ = "start"
+        data = DataPost()
         myTmpl = Template(
             """<%include file="header.mako"/>
                <%include file="menu.mako"/>
@@ -52,7 +120,12 @@ class Post(AbstractVisitor):
             title="Nox Obscura: Die Gilde",
             cfg_siteUrl=self.cfg.cfg_siteUrl,
             anonymous=self.anonymous,
-            cfg_staticPath=self.cfg.cfg_staticPath)
+            cfg_staticPath=self.cfg.cfg_staticPath,
+            postList=data.getPostList(category_),
+            getCommentCount=data.getCommentCount,
+            prettyPrintDate=self.prettyPrintDate,
+            prettyPrintTime=self.prettyPrintTime,
+            category=category_)
         return output
 
     def raid(self):

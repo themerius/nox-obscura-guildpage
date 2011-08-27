@@ -1,21 +1,23 @@
 <%doc>
    required:
-     varName: varType
+     postId: string (id)
+     anonymous: bool
 </%doc>
+% if not anonymous:
 <!-- -->       <section id="newReplySection"> <!-- NEW REPLY COMMENT -->
                <div class="row">
                   <h2>Kommentar abgeben</h2>
                </div>
                
-               <form action="user/post?type=replay" method="post" onsubmit="myEditor.post()"> 
-               <input type="hidden" name="uuid" value="87697"/>
+               <form action="../../post/newComment" method="post" onsubmit="myEditor.post()"> 
+               <input type="hidden" name="postId" value="${postId}"/>
                <div class="row">
                    <div class="col1">&nbsp;</div>
                    <div class="col7">
-                       <textarea name="content" id="input_"><div>Dein Text!</div></textarea> 
+                       <textarea name="content" id="input">Dein Text!</textarea> 
                               <script type="text/javascript"> 
                               new TINY.editor.edit('myEditor',{
-                                 id:'input_', /* ACHTUNG beim Coden wieder auf input ohne _ ändern */
+                                 id:'input',
                                  width:556,
                                  height:275,
                                  cssclass:'te',
@@ -52,4 +54,4 @@
                </div>
                </form>
 <!--/-->       </section> <!-- / NEW REPLY COMMENT -->
-
+% endif

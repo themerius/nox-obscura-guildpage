@@ -110,8 +110,10 @@
                        <p><input class="button" type="submit" value="Bestätigen"/></p>
                        </form>
                   </div>
-                  %endif
-                  %endfor
+                  % else:
+                  <div class="col2">&nbsp;</div>
+                  % endif
+                  % endfor
                   <div class="row-end">&nbsp;</div>
                </div>
    <!--/-->    </section> <!-- / FORMULARS -->
@@ -210,8 +212,10 @@
                        <p><input class="button" type="submit" value="Bestätigen"/></p>
                        </form>
                   </div>
-                  %endif
-                  %endfor
+                  % else:
+                  <div class="col2">&nbsp;</div>
+                  % endif
+                  % endfor
                   <div class="row-end">&nbsp;</div>
                </div>
    <!--/-->    </section> <!-- / FORMULARS -->

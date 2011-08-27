@@ -36,14 +36,7 @@ class Raidplaner(AbstractVisitor):
         # DataRaid Instance:
         self.data = DataRaid()
         # calculate Today:
-        t = time.localtime() # time-struct.
-        self.today = []
-        self.today.append(t.tm_year)
-        self.today.append(t.tm_mon)
-        self.today.append(t.tm_mday)
-        self.today.append(t.tm_hour)
-        self.today.append(t.tm_min)
-        self.today.append(t.tm_sec) # Save Dates in right order.
+        self.today = self.calculateToday()
 
     def prettyPrintDate(self, x): # for functional map()
         dayNames = ["Mo, ", "Di, ", "Mi, ", "Do, ", "Fr, ", "Sa, ", "So, "]
