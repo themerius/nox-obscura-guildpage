@@ -6,6 +6,9 @@
      prettyPrintTime(x)
      cfg_siteUrl: string
 </%doc>
+% if postLatest == {}:
+
+% else:
 <!-- -->       <section id="beitragSection"> <!-- BEITRAG -->
                 <div class="row">
                    <h2>${postLatest.value['title']}</h2>
@@ -32,4 +35,5 @@
                   Zu den <a href="${cfg_siteUrl}/post/view/${postLatest.value['_id']}">Kommentaren</a>.
                 </p>
                 <hr />
+% endif
 <!--/-->       </section> <!-- / BEITRAG -->
