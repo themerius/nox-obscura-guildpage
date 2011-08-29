@@ -47,12 +47,7 @@ class Post(AbstractVisitor):
         data = DataPost()
         post_ = data.getPost(_id)
         if post_:
-            if post_['category'] == 'forum' or post_['category'] == 'archiv':
-                if self.anonymous:
-                    raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
-                        "/fehler?err=4", 303)
-            else:
-                myTmpl = Template(
+            myTmpl = Template(
                     """<%include file="header.mako"/>
                        <%include file="menu.mako"/>
                        <%include file="content_head.mako"/>
@@ -61,7 +56,7 @@ class Post(AbstractVisitor):
                        <%include file="content_foot.mako"/>
                        <%include file="footer.mako"/>""",
                     lookup=self.templateLookup)
-        output = myTmpl.render_unicode(
+            output = myTmpl.render_unicode(
             title="Nox Obscura: Die Gilde",
             cfg_siteUrl=self.cfg.cfg_siteUrl,
             anonymous=self.anonymous,
@@ -71,6 +66,17 @@ class Post(AbstractVisitor):
             prettyPrintDate=self.prettyPrintDate,
             prettyPrintTime=self.prettyPrintTime,
             postId=_id)
+            if post_['category'] == 'forum' or post_['category'] == 'archiv':
+                if self.anonymous:
+                    raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                        "/fehler?err=4", 303)
+                else:
+                    return output
+            else:
+                return output
+        else:
+            raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
+                        "/fehler?err=11", 303)
         return output
 
     @expose()
@@ -82,6 +88,7 @@ class Post(AbstractVisitor):
         data = DataPost()
         newOk = data.createNewPost(postId, title, content, self.username, self.calculateToday(), category)
         if newOk:
+            # send E-Mail
             message = Template("<%include file='email_new_post.mako'/>",
                 lookup=self.templateLookup)
             message = message.render(
@@ -105,6 +112,16 @@ class Post(AbstractVisitor):
         data = DataPost()
         newCom = data.createNewComment(self.username, self.calculateToday(), postId, content)
         if newCom:
+            # send E-Mail
+            message = Template("<%include file='email_new_comment.mako'/>",
+                lookup=self.templateLookup)
+            message = message.render(
+                cfg_siteUrl=self.cfg.cfg_siteUrl,
+                username_=self.username,
+                postId_=postId,
+                content_=content)
+            subject = "Neuer Kommentar von "+self.username
+            self.sendMailToAllSubscribers("post", message, subject)
             raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
                 "/post/view/"+postId, 303)
         else:
@@ -118,6 +135,7 @@ class Post(AbstractVisitor):
             """<%include file="header.mako"/>
                <%include file="menu.mako"/>
                <%include file="content_head.mako"/>
+               <%include file="post_latest.mako"/>
                <%include file="post_overview.mako"/>
                <%include file="post_new.mako"/>
                <%include file="static_page_guildinfo.mako"/>
@@ -129,6 +147,7 @@ class Post(AbstractVisitor):
             cfg_siteUrl=self.cfg.cfg_siteUrl,
             anonymous=self.anonymous,
             cfg_staticPath=self.cfg.cfg_staticPath,
+            postLatest=data.getLatestPost("start"),
             postList=data.getPostList(category_),
             getCommentCount=data.getCommentCount,
             prettyPrintDate=self.prettyPrintDate,
@@ -137,6 +156,8 @@ class Post(AbstractVisitor):
         return output
 
     def raid(self):
+        category_ = "raid"
+        data = DataPost()
         myTmpl = Template(
             """<%include file="header.mako"/>
                <%include file="menu.mako"/>
@@ -148,28 +169,48 @@ class Post(AbstractVisitor):
                <%include file="footer.mako"/>""",
             lookup=self.templateLookup)
         output = myTmpl.render_unicode(
-            title="Nox Obscura: Die Gilde",
-            cfg_staticPath=self.cfg.cfg_staticPath)
+            title="Nox Obscura: Raids",
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
+            cfg_staticPath=self.cfg.cfg_staticPath,
+            postList=data.getPostList(category_),
+            getCommentCount=data.getCommentCount,
+            prettyPrintDate=self.prettyPrintDate,
+            prettyPrintTime=self.prettyPrintTime,
+            category=category_)
         return output
 
     def forum(self):
+        category_ = "forum"
+        data = DataPost()
         myTmpl = Template(
             u"""<%include file="header.mako"/>
                <%include file="menu.mako"/>
                <%include file="content_head.mako"/>
                <h2>Anmerkung</h2>
                <p>Das Forum ist <em>nicht</em> öffentlich zugänglich.</p>
+               % if not anonymous:
                <%include file="post_overview.mako"/>
+               % endif
                <%include file="post_new.mako"/>
-                <%include file="content_foot.mako"/>
+               <%include file="content_foot.mako"/>
                <%include file="footer.mako"/>""",
             lookup=self.templateLookup)
         output = myTmpl.render_unicode(
-            title="Nox Obscura: Die Gilde",
-            cfg_staticPath=self.cfg.cfg_staticPath)
+            title="Nox Obscura: Forum",
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
+            cfg_staticPath=self.cfg.cfg_staticPath,
+            postList=data.getPostList(category_),
+            getCommentCount=data.getCommentCount,
+            prettyPrintDate=self.prettyPrintDate,
+            prettyPrintTime=self.prettyPrintTime,
+            category=category_)
         return output
 
     def archiv(self):
+        category_ = "archiv"
+        data = DataPost()
         myTmpl = Template(
             u"""<%include file="header.mako"/>
                <%include file="menu.mako"/>
@@ -178,14 +219,23 @@ class Post(AbstractVisitor):
                <p>Hier werden alle Themen archiviert, die nicht mehr
                zeitgemäß sind. Das Archiv ist <em>nicht</em> öffentlich
                zugänglich.</p>
+               % if not anonymous:
                <%include file="post_overview.mako"/>
+               % endif
                <%include file="post_new.mako"/>
-                <%include file="content_foot.mako"/>
+               <%include file="content_foot.mako"/>
                <%include file="footer.mako"/>""",
             lookup=self.templateLookup)
         output = myTmpl.render_unicode(
-            title="Nox Obscura: Die Gilde",
-            cfg_staticPath=self.cfg.cfg_staticPath)
+            title="Nox Obscura: Archiv",
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
+            cfg_staticPath=self.cfg.cfg_staticPath,
+            postList=data.getPostList(category_),
+            getCommentCount=data.getCommentCount,
+            prettyPrintDate=self.prettyPrintDate,
+            prettyPrintTime=self.prettyPrintTime,
+            category=category_)
         return output
 
     def bewerbung(self):
@@ -194,11 +244,12 @@ class Post(AbstractVisitor):
                <%include file="menu.mako"/>
                <%include file="content_head.mako"/>
                <%include file="static_page_bewerbung.mako"/>
-                <%include file="content_foot.mako"/>
+               <%include file="content_foot.mako"/>
                <%include file="footer.mako"/>""",
             lookup=self.templateLookup)
         output = myTmpl.render_unicode(
-            title="Nox Obscura: Die Gilde",
+            title="Nox Obscura: Bewerbung",
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
             cfg_staticPath=self.cfg.cfg_staticPath)
         return output
 

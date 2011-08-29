@@ -136,6 +136,7 @@ class AbstractVisitor(object):
             3. "comment" (on a post)
         purposeFlags is a list of bools: [raid, post, comment] per user.
         """
+        print "sendMail Report ("+purpose+") BEGIN:"
         import thread
         if purpose == "raid":
             index = 0
@@ -152,6 +153,7 @@ class AbstractVisitor(object):
             userEmailAddress = user.key
             if userPurposeFlags[index]:
                 thread.start_new_thread(self.sendMail, (message, userEmailAddress, subject) )
+        print "sendMail Report ("+purpose+") END."
         return True
 
     def sendMail(self, message, toAddress, subject):
@@ -159,7 +161,7 @@ class AbstractVisitor(object):
         try:
             msg = MIMEText(message.encode('utf-8'), 'plain', 'utf-8') # throws exception if using unicode
             #msg.set_charset('utf-8') # switch string to unicode
-            sender = "informer@nox-obscura.net"
+            sender = self.cfg.cfg_mailAddress
             msg['From'] = "Nox Obscura informiert"+sender
             msg['To'] = toAddress
             msg['Subject'] = subject
@@ -167,7 +169,7 @@ class AbstractVisitor(object):
             mailServer.ehlo()
             mailServer.starttls()
             mailServer.ehlo()
-            mailServer.login(sender, "passwort")
+            mailServer.login(sender, self.cfg.cfg_mailLoginPassword)
             mailServer.sendmail( sender, toAddress, msg.as_string() )
             mailServer.close()
             print toAddress, True

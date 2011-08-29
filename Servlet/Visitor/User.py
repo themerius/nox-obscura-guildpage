@@ -26,8 +26,6 @@ class User(AbstractVisitor):
         # Do inheritance Stuff:
         AbstractVisitor.__init__(self)
         # Own Stuff:
-        import random
-        self.r = unicode(random.random())
 
     def login(self):
         myTmpl = Template(
@@ -114,9 +112,19 @@ class User(AbstractVisitor):
             raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
                 "/fehler?err=5", 303)
         time = date[0]+':'+date[1]
-        date = [ int(date[4]), int(date[3]), int(date[2]) ] # cast to List.
+        dateList = [ int(date[4]), int(date[3]), int(date[2]) ] # cast to List.
+        # send E-Mail:
+        message = Template("<%include file='email_new_raid.mako'/>",
+            lookup=self.templateLookup)
+        message = message.render(
+            cfg_siteUrl=self.cfg.cfg_siteUrl,
+            name_=raidName,
+            date_=date[2]+"."+date[3]+"."+date[4],
+            time_=time)
+        subject = "Neuer Raidtermin: "+date[2]+"."+date[3]+"."+date[4]
+        self.sendMailToAllSubscribers("raid", message, subject)
         data = DataRaid()
-        data.newRaidEvent(raidName, date, time)
+        data.newRaidEvent(raidName, dateList, time)
         raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
                 "/raidplaner", 303)
 
@@ -158,6 +166,8 @@ class User(AbstractVisitor):
             return output
 
     def translateCharList(self, username, usersCharacter):
+        """The Characters role and class are different namend in db as
+        the CSS-Classes."""
         cl = DataUser()
         cl = cl.getUsersCharacterList(username, usersCharacter)
         l = [ cl['role'], cl['class'] ]
@@ -251,11 +261,6 @@ class User(AbstractVisitor):
         else:
             raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
                 "/fehler?err=6", 303)
-
-    @expose()
-    def test(self):
-        self.__init__()
-        return self.r
 
     def doLogout(self):
         return 0

@@ -31,11 +31,9 @@
          href="${cfg_staticPath}/tinyeditor/style.css"
          media="all" />
    
-   <!-- Favicons -->
+   <!-- Favicon -->
    <link rel="shortcut icon" 
-         href="${cfg_staticPath}/favicon.ico" />
-   <link rel="apple-touch-icon"
-         href="${cfg_staticPath}/apple-touch-icon.png" />
+         href="/favicon.ico" />
 </head>
 
 <body>
