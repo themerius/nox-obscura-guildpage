@@ -86,7 +86,7 @@ class AbstractVisitor(object):
             return "roleTank"
         elif x == "Heiler":
             return "roleHeal"
-        elif x == "Dps":
+        elif x == "DPS":
             return "roleDps"
         elif x == "Paladin":
             return "paladin"
