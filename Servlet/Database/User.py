@@ -48,7 +48,15 @@ class DataUser(AbstractData):
             return doc
         else:
             return {'_id': '', 'admin': False, 'characterList': [],
-                    'dkp': 0, 'email': '', 'realname': '', 'session': ''}
+                    'dkp': 0, 'email': '', 'realname': '', 'session': '',
+                    'emailFlags': [False,False,False]}
+
+    def retriveEmailAddresses(self):
+        view = self.readView('users-3')
+        if view:
+            return view
+        else:
+            return []
 
     def addCharToUser(self, username, charInfo):
         doc = self.readEntry(username)

@@ -21,7 +21,6 @@
                    <div class="row-end">&nbsp;</div>
                </div>
                % for post in postList:
-               <% print post %>
                <div class="row postStretch">
                    <div class="col5"><a href="${cfg_siteUrl}/post/view/${post.value['_id']}">${post.value['title']}</a></div>
                    <div class="col2">${getCommentCount(post.value['_id'])}</div>

@@ -10,6 +10,7 @@ viewDict = {
 # User Views:
  'users-1': 'dev/getCharList', # username, charList
  'users-2': 'dev/points', # points, {'username':, 'charList':}
+ 'users-3': 'dev/email', # email, emailFlags
 # Raids Views:
  'raids-1': 'dev/raidEvent', # [2011,8,24]
  'raids-2': 'dev/getDateAndRaidId', # [date], raidId

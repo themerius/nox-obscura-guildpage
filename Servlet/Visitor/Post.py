@@ -82,6 +82,14 @@ class Post(AbstractVisitor):
         data = DataPost()
         newOk = data.createNewPost(postId, title, content, self.username, self.calculateToday(), category)
         if newOk:
+            message = Template("<%include file='email_new_post.mako'/>",
+                lookup=self.templateLookup)
+            message = message.render(
+                cfg_siteUrl=self.cfg.cfg_siteUrl,
+                title_=title,
+                postId_=postId)
+            subject = "Neue Nachricht: "+title
+            self.sendMailToAllSubscribers("post", message, subject)
             raise cherrypy.HTTPRedirect(self.cfg.cfg_siteUrl+
                 "/post/view/"+postId, 303)
         else:

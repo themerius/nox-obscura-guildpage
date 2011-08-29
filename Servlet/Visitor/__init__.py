@@ -10,6 +10,9 @@ from mako.template import Template
 
 import cherrypy
 
+import smtplib
+from email.mime.text import MIMEText
+
 import Servlet.site_cfg
 
 # E-Mail sende Funktion wird vererbt?? Oder in eine extra Klasse hier?
@@ -27,8 +30,9 @@ class AbstractVisitor(object):
     def __init__(self):
         # Template stuff (assumes that path from __main__):
         self.templateLookup = TemplateLookup(
-            directories=['Servlet/Template', 'Servlet/Template/Content'],
-            input_encoding='utf-8')
+            directories=['Servlet/Template', 'Servlet/Template/Content',
+                    'Servlet/Template/E-Mail'],
+                input_encoding='utf-8')
         # Make the Site Config available to all subclasses:
         self.cfg = Servlet.site_cfg
         # Lookup User and Session:
@@ -124,3 +128,50 @@ class AbstractVisitor(object):
             errMsg=err)
         return output
 
+    def sendMailToAllSubscribers(self, purpose, message, subject):
+        """Sends mail to all the Subcribers of the given purpose.
+        The purposes are:
+            1. "raid"
+            2. "post"
+            3. "comment" (on a post)
+        purposeFlags is a list of bools: [raid, post, comment] per user.
+        """
+        import thread
+        if purpose == "raid":
+            index = 0
+        elif purpose == "post":
+            index = 1
+        elif purpose == "comment":
+            index = 2
+        else:
+            return False
+        data = DataUser()
+        users = data.retriveEmailAddresses()
+        for user in users:
+            userPurposeFlags = user.value
+            userEmailAddress = user.key
+            if userPurposeFlags[index]:
+                thread.start_new_thread(self.sendMail, (message, userEmailAddress, subject) )
+        return True
+
+    def sendMail(self, message, toAddress, subject):
+        """There are three Mail-Adresses, for the various purposes."""
+        try:
+            msg = MIMEText(message.encode('utf-8'), 'plain', 'utf-8') # throws exception if using unicode
+            #msg.set_charset('utf-8') # switch string to unicode
+            sender = "informer@nox-obscura.net"
+            msg['From'] = "Nox Obscura informiert"+sender
+            msg['To'] = toAddress
+            msg['Subject'] = subject
+            mailServer = smtplib.SMTP('smtp.gmail.com', 587)
+            mailServer.ehlo()
+            mailServer.starttls()
+            mailServer.ehlo()
+            mailServer.login(sender, "passwort")
+            mailServer.sendmail( sender, toAddress, msg.as_string() )
+            mailServer.close()
+            print toAddress, True
+            return True
+        except:
+            print toAddress, False
+            return False

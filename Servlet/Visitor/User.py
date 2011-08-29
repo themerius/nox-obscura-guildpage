@@ -238,7 +238,8 @@ class User(AbstractVisitor):
                     'admin': False, 'dkp': 0,
                     'registerDate': today,
                     'characterList': [ {'race': race, 'role': role,
-                        'name': charname, 'class': class_} ]
+                        'name': charname, 'class': class_} ],
+                    'emailFlags': [True,True,True]
                    }
             data = DataUser()
             if data.addNewUser(username, user):
