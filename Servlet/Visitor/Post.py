@@ -250,6 +250,7 @@ class Post(AbstractVisitor):
         output = myTmpl.render_unicode(
             title="Nox Obscura: Bewerbung",
             cfg_siteUrl=self.cfg.cfg_siteUrl,
+            anonymous=self.anonymous,
             cfg_staticPath=self.cfg.cfg_staticPath)
         return output
 
