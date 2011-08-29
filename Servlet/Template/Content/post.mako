@@ -8,6 +8,7 @@
                  <Row ...>, ... ]
      prettyPrintDate(x)
      prettyPrintTime(x)
+     cfg_siteUrl: string
 </%doc>
 <!-- -->       <section id="beitragSection"> <!-- BEITRAG -->
                 <div class="row">
@@ -15,7 +16,7 @@
                 </div>
 
                 <div class="row">
-                   <div class="col1"><img class="avatar" src="img/avatar.png" /></div>
+                   <div class="col1"><img class="avatar" src="${cfg_siteUrl}/avatar/${post['username']}" /></div>
                    <div class="col3 postInfoName">${post['username']}</div>
                    <div class="col4">&nbsp;</div>
                    <%
@@ -36,7 +37,7 @@
 
                 % for comment in comments:
                 <div class="row">
-                 <div class="col1"><img class="avatar" src="img/default-avatar.png" /></div>
+                 <div class="col1"><img class="avatar" src="${cfg_siteUrl}/avatar/${comment.value['username']}" /></div>
                  <div class="col3 postInfoName">${comment.value['username']}</div>
                  <div class="col4">&nbsp;</div>
                  <%

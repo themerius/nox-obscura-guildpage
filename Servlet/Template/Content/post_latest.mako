@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="row">
-                   <div class="col1"><img class="avatar" src="img/avatar.png" /></div>
+                   <div class="col1"><img class="avatar" src="${cfg_siteUrl}/avatar/${postLatest.value['username']}" /></div>
                    <div class="col3 postInfoName">${postLatest.value['username']}</div>
                    <div class="col4">&nbsp;</div>
                    <%

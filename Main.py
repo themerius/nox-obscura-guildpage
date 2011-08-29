@@ -107,6 +107,15 @@ class Main(object):
         myVisitor = AbstractVisitor()
         return myVisitor.errorPage(errMsg)
 
+    @expose()
+    def avatar(self, username):
+        """gets the avatar of the user and returns only the picture"""
+        if username == "Themerius":
+            f = open('avatar.png', 'r')
+        else:
+            f = open('avatar-default.png', 'r')
+        cherrypy.response.headers['Content-Type'] = 'image/png'
+        return f.read()
 
 
 # Load Config File
