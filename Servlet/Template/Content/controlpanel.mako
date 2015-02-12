@@ -10,7 +10,7 @@
                </div>
                
                <div class="row">
-                  <h3>Willkommen XY!</h3>
+                  <h3>Willkommen Noxianer!</h3>
                      <p>Du bist momentan mit der Session ${userInfo['session']} angemeldet. Die Session ist ab dem Zeitpunkt des Logins 60 Minuten gültig. Änderungen dieses Intervalls bzw. eine manuelle Logout-Funktion werden noch realisiert.</p>
                   <h3>Deine Daten</h3>
                      <p>Solltest du den Wunsch haben, deine Daten zu ändern, wende dich an eine Person im Impressum. Passwortänderungen sind über diesen Weg auch möglich, noch ist keine Passwort-Änderungsfunktion bzw. Passwort-Wiederherstellungsfunktion realisiert.</p>

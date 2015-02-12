@@ -12,7 +12,7 @@
                        </p>
                        <h3>Zugang</h3>
                        <p>
-                           ip = nox-obscura.net <br />
+                           ip = nox-obscura.eu <br />
                            port = default / 9987 <br />
                            passwort = Das erfährst du von einem Noxianer! <br />
                        </p>
@@ -24,9 +24,6 @@
                        </p>
                        <p>
                            Serverseitig wird auf Python (Cherrypy) und Couchdb gesetzt. Im <a href="https://code.google.com/p/nox-obscura-guildpage/source/checkout">Repository</a> liegt die aktuellste Version vor.
-                       </p>
-                       <p>
-                           Fallen Dir irgendwelche Fehler auf, kannst du diese gerne <a href="https://code.google.com/p/nox-obscura-guildpage/issues/list">melden</a>.
                        </p>
                    </div>
                    <div class="col4">

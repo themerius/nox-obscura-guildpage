@@ -136,9 +136,9 @@ class Post(AbstractVisitor):
                <%include file="menu.mako"/>
                <%include file="content_head.mako"/>
                <%include file="post_latest.mako"/>
+               <%include file="static_page_guildinfo.mako"/>
                <%include file="post_overview.mako"/>
                <%include file="post_new.mako"/>
-               <%include file="static_page_guildinfo.mako"/>
                <%include file="content_foot.mako"/>
                <%include file="footer.mako"/>""",
             lookup=self.templateLookup)

@@ -3,19 +3,21 @@
 # ------------------------
 
 # Golbal
-cfg_siteUrl = u"http://d.nox-obscura.net"
+cfg_siteUrl = u"http://nox-obscura.eu"
 cfg_staticPath = cfg_siteUrl + u"/static"
 
 
 # Database (CouchDB)
-cfg_dbUrl = 'http://188.40.184.82:5984/'
-cfg_dbUser = ''
+cfg_dbUrl = 'http://localhost:5984/'
+cfg_dbUser = 'themerius'
 cfg_dbPassword = ''
 
-cfg_dbStorageLocation_Users = 'nox_users_dev'
-cfg_dbStorageLocation_Raids = 'nox_raids_dev'
-cfg_dbStorageLocation_Posts = 'nox_posts_dev'
+cfg_dbStorageLocation_Users = 'nox_users'
+cfg_dbStorageLocation_Raids = 'nox_raids'
+cfg_dbStorageLocation_Posts = 'nox_posts'
 
 # E-Mail (SMTP-Server)
-cfg_mailAddress = ''
+cfg_mailAddress = 'info@nox-obscura.eu'
 cfg_mailLoginPassword = ''
+cfg_mailSmtp = 'smtp.strato.de'
+cfg_mailSmtpPort = 465

@@ -57,7 +57,7 @@ melden soll.</p>
 Jedoch wende dich damit direkt an einen der Raidleiter und fange keine Diskussion im Raidchannel darüber an,
 dass Raid XY es an dieser Stelle so und so macht. Das ist unser Raid und ggf. verfolgen wir eine andere
 Taktik. Auch solltest du berücksichtigen, dass es uns um den Erfolg der gesamten Gruppe geht.
-Wenn du auf der Suche nach Erfolgen für deine Statistik bist, bist du in einem Randomraid besser aufgehoben.</p> 
+Wenn du auf der Suche nach Erfolgen für deine Statistik bist, bist du in einem Randomraid bzw. einer Raidgilde besser aufgehoben.</p> 
 <br/> 
 <p>Wie bereits erwähnt sind wir eigentlich eine Truppe, die das ganze Spiel nicht so ernst nimmt.
 Jedoch möchte keiner seine Zeit mit sinnlosen Toden oder überflüssigen Tries verbringen.
@@ -86,7 +86,7 @@ erhälst und schau dir an, was entsprechende Händler vielleicht sonst noch zu b
 <p>... Verzauberungen!
 "Zu teuer" ist keine Entschuldigung, da du den Großteil der VZ-Mats von der Raidbank gesponsored bekommst.
 Die Mats befinden sich in unserer Bank in einem geschlossenen Fach, auf welches nur die Offiziere (Chrissei, Nisaqui, Zurly) und 
-die Gildenleitung (Lead: Karandrass, Co-Lead : Dhraha & Paranøia) Zugriff haben. Sprich sie einfach darauf an.</p> 
+die Gildenleitung und Offiziere Zugriff haben. Sprich sie einfach darauf an.</p> 
 <br/> 
 <p>... Fairness!
 Die primäre Skillung des Einzelnen hat selbstverständlich Vorrang.</p> 
@@ -106,9 +106,8 @@ teilzunehmen.</p>
 Es haben sich folgende Zeiten für unsere Raids herauskristallisiert:
  
 <ul> 
-	<li>Mittwoch 20.00 Uhr</li> 
-	<li>Donnerstag zwischen 19.00 und 20.00 Uhr</li> 
-	<li>Sonntag zwischen 19.00 und 20.00 Uhr</li> 
+	<li>Diese müssen bald ermittelt werden.</li> 
+	<li>Weitere Infos bei der Gildenleitung erfragen.</li> 
 </ul> 
  
 Wenn sich eure Termine ändern sollten, bitte teilt uns das mit.
@@ -137,7 +136,7 @@ Wir werden jeden einzelnen überprüfen:
 </p> 
  
 <p> 
-Zudem solle dafür gesorgt werden, dass genug Bufffood, Flaschen, Tränke etc. vorhanden sind. Darum hat sich jeder zu kümmern. Wer freiwillig etwas mehr farmt (und es in irgendeiner Form der Gruppe zugute führt) erhält bestimmt eine Belohnung. 
+Zudem sollte dafür gesorgt werden, dass genug Bufffood, Flaschen, Tränke etc. vorhanden sind. Darum sollte sich jeder kümmern. Wer freiwillig etwas mehr farmt (und es in irgendeiner Form der Gruppe zugute führt) soll auch belohnt werden. 
 </p> 
  
 <p> 
@@ -154,7 +153,7 @@ Dazu gehören folgende Buffs:
 </p> 
 <br/> 
 <p> 
-Ich werde zu jedem Raidboss einen kurzen Bericht bzw. Zusammenfassung schreiben, die sich jeder aufmerksam ansehen sollte. Jede Instanz bekommt einen eigenen Thread. Wie z.B. hier für BD.
+
 </p> 
  
  
@@ -168,7 +167,7 @@ Ich werde zu jedem Raidboss einen kurzen Bericht bzw. Zusammenfassung schreiben,
 <p>Jemand sollte nie zweimal hintereinander eine ID aussetzen.
 </p> 
 <br/> 
-<p>Die Raidleiter befreien sich vorerst von der Rotation. Wir leiten diese Raids und das läuft am effektivsten, wenn wir beide Vorort sind. Wir können auch nicht wirklich mit jemand tauschen, wenn wir keine Lust haben müssen wir erscheinen, wir müssen es organisieren. Wie ihr merkt haben wir mehr Pflichten als Rechte. Wir konkurrieren mit niemand was die Ausstattung betrifft. Und so weiter und so fort — ich hoffe jeder hat dafür Verständnis. Wenn einer von uns nicht kann, muss leider irgendwie rotiert werden, das ist klar. Falls jemand das dennoch nicht korrekt findet, bitten wir darum zu Argumentieren — wir können darüber gerne diskutieren.
+<p>Die Raidleiter befreien sich vorerst von der Rotation. Wir leiten diese Raids und das läuft am effektivsten, wenn wir vor Ort sind. Wir können auch nicht wirklich mit jemand tauschen, wenn wir keine Lust haben müssen wir erscheinen, wir müssen es organisieren. Wie ihr merkt haben wir mehr Pflichten als Rechte. Wir konkurrieren mit niemand was die Ausstattung betrifft. Und so weiter und so fort — ich hoffe jeder hat dafür Verständnis. Wenn einer von uns nicht kann, muss leider irgendwie rotiert werden, das ist klar. Falls jemand das dennoch nicht korrekt findet, bitten wir darum zu Argumentieren — wir können darüber gerne diskutieren.
 </p> 
 <br/> 
 <p>Rotation gilt natürlich nicht, wenn es gerade aufgeht.
@@ -177,7 +176,7 @@ Ich werde zu jedem Raidboss einen kurzen Bericht bzw. Zusammenfassung schreiben,
 <p>Heiler (und auch Tanks) sind dank ihrer Schlüsselposition und Mangel nahezu von Rotation befreit.
 </p> 
 <br/> 
-<p>Ihr könnt auch gerne untereinander tauschen und auch so absprechen — jedoch immer so, dass die Gruppe nicht darunter leiden muss. Zudem muss den Raidleitern früh genug bescheid gegeben werden und sie müssen dem auch zustimmen.
+<p>Ihr könnt auch gerne untereinander tauschen und auch so absprechen — jedoch immer so, dass die Gruppe nicht darunter leiden muss. Zudem können die Raidleiter ihr Veto einlegen.
 </p> 
 </p> 
  
@@ -194,36 +193,30 @@ Am Abend vor dem Raid machen wir die Anmeldung, wer sich danach noch anmeldet is
 <h3>Anmeldung DKPs</h3> 
 <p> 
 <ul> 
-	<li>Rechtzeitiges Anmelden (auch Ersatzbank) gibt DKP +5 (auch wenn man nicht bestätigt wird) und nochmals +5 für das Erscheinen.</li> 
-	<li>Anmeldung + nicht Erscheinen (unentschuldigt) -10</li> 
-	<li>Für Bufffood etc. farmen gibt es hin und wieder ein DKP-Bonbon (allerdings unregelmäßig). Ersatzbankleute dürfen gerne während der Raidzeit ein paar Fische fangen oder Blumen sammeln…</li> 
-	<li>Abmelden oder nicht Anmelden ist neutral +-0</li> 
+	<li>Früher haben wir DKPs verwendet. Da es inzwischen diverse Möglichkeiten gibt, müssen wir erst abstimmen welches Lootsystem wir ab sofort verwenden wollen.</li> 
 </ul> 
 </p> 
  
 <h3>Honorierung pro Raid</h3> 
 <p> 
 <ul> 
-	<li>Wiperun +60</li> 
-	<li>Normal +50</li> 
-	<li>Farmstatus +40</li> 
+	<li>Die Punkte werden vorläufig vermutlich eher als statistisches Tool verwendet.</li> 
 </ul> 
 </p> 
  
 <h3>Kosten</h3> 
 <p> 
 <ul> 
-	<li>Ein Gegenstand kostet 60.</li> 
-	<li>Dummheiten können bestraft werden — im Ermessen der Raidleitung. Ich hoffe, das müssen wir nie.</li> 
+	<li>Wie bereits angedeutet wird darüber noch abgestimmt.</li> 
 </ul> 
 </p> 
  
 <h3>Die Beuteverteilung</h3> 
-<p>Die primäre Skillung des Einzelnen hat selbstverständlich Vorrang. Der mit der höchsten DKP bekommt den gewollten Gegenstand.
-Der Plündermeister postet den Gegenstand in /ra, bei Interesse wird ein + in /ra geschrieben. Wenn Interesse für die sekundäre Skillung besteht ein (+).</p> 
+<p>Die primäre Skillung des Einzelnen hat selbstverständlich Vorrang.
+</p> 
  
 <h3>Twink-Regelung</h3> 
-<p>Twinks sollen für besondere Anlässe (z.B. Heilermangel etc.) zugelassen sein. Er hat Zugriff auf die DKP des Hauptcharakters, allerdings gilt er als zweit Equip. Dies soll bezwecken, dass zuerst die Hauptcharaktere an ihre Gegenstände kommen.</p> 
+<p>Twinks sollen für besondere Anlässe (z.B. Heilermangel etc.) zugelassen sein.</p> 
  
 <h3>Sonstiges</h3> 
 <p>Wir bewahren die Verzauberermaterialien im geschlossenen Bankfach auf. Wer etwas benötigt schreibt einen Offizier (Schattengestalt) oder Gildenleitung (Nachtkreatur, Angelus noctis).</p> 
@@ -232,12 +225,12 @@ Der Plündermeister postet den Gegenstand in /ra, bei Interesse wird ein + in /r
  
 <h2>§7 AddOns</h2> 
  
-<p>Grundsätzlich braucht man kaum AddOns, aber welche ihr für die Raids haben müsst ist Big Wigs und Omen und Decursive. Alternativen sind auch zulässig.</p> 
+<p>Grundsätzlich braucht man kaum AddOns. Wer jedoch gute Addons kennt, darf gerne Vorschläge machen!</p> 
  
  
 <h2>(§8 Bank)</h2> 
  
-<p>Ein Appell an alle: Bitte schickt eure grünen Gegenstände an einem Verzauberer der Gilde (z.B. Quis), dieser entzaubert die Gegenstände und packt sie in die Gildenbank — das kommt allen zu Gute</p> 
+<p>Ein Appell an alle: Bitte schickt eure grünen Gegenstände an einem Verzauberer der Gilde, dieser entzaubert die Gegenstände und packt sie in die Gildenbank — das kommt allen zu Gute</p> 
 <br/> 
 <p>Noch ein Appell: Bitte Tränke, Bufffood etc. farmen und in die Bank packen — zumindest die, die an der Raidgruppe teilnehmen. Eine gute Gelegenheit ist, wenn man auf der Ersatzbank steht, kann man noch ein paar Minuten während der Raidzeit farmen. Es gibt ja auch noch das o.g. Bonbon. Zudem hat die ganze Raidgruppe etwas davon.</p>
                </div>

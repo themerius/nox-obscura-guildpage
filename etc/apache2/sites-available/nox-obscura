@@ -1,0 +1,39 @@
+<VirtualHost *:80>
+	ServerName www.nox-obscura.eu
+	ServerAlias nox-obscura.eu
+	ServerAdmin webmaster@nox-obscura.eu
+	
+	ProxyPreserveHost On
+	SetEnv proxy-nokeepalive 1
+
+	DocumentRoot /home/nox/static
+	
+	# this prevents the follow URL path from being proxied
+	ProxyPass /static !
+
+	<Proxy *>
+		Order allow,deny
+		Allow from all
+	</Proxy>
+
+	ProxyPass / http://127.0.0.1:8080/
+	ProxyPassReverse / http://127.0.0.1:8080/
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    Alias /doc/ "/usr/share/doc/"
+    <Directory "/usr/share/doc/">
+        Options Indexes MultiViews FollowSymLinks
+        AllowOverride None
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.0/255.0.0.0 ::1/128
+    </Directory>
+
+</VirtualHost>

@@ -30,7 +30,7 @@ class AbstractData(object):
 
     # Static Members (shared by all Classinstances)
     couch = couchdb.Server(cfg.cfg_dbUrl)
-    couch.resource.credentials = (cfg.cfg_dbUser, cfg.cfg_dbPassword)#Login
+    #couch.resource.credentials = (cfg.cfg_dbUser, cfg.cfg_dbPassword)#Login
 
     # Exception Classes
     class NoSuchView(Exception): pass

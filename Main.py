@@ -65,7 +65,7 @@ class Main(object):
     @expose()
     def register(self, secret=""):
         myVisitor = User()
-        if secret == "noxo2011":
+        if secret == "Nox-Rocks-2015":
             User.secretTextAnswerd = True
             return myVisitor.register(True)
         else:

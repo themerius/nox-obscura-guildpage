@@ -165,7 +165,7 @@ class AbstractVisitor(object):
             msg['From'] = "Nox Obscura informiert"+sender
             msg['To'] = toAddress
             msg['Subject'] = subject
-            mailServer = smtplib.SMTP('smtp.gmail.com', 587)
+            mailServer = smtplib.SMTP_SSL(self.cfg.cfg_mailSmtp, self.cfg.cfg_mailSmtpPort)
             mailServer.ehlo()
             mailServer.starttls()
             mailServer.ehlo()
