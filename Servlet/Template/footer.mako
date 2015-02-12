@@ -23,7 +23,7 @@
                            Diese Webseite setzt auf <em>moderne</em> Webtechnologie (Html5 und CSS3) und wird somit am besten in einem modernen Browser wie Safari, Chrome, Firefox oder Opera angezeigt.
                        </p>
                        <p>
-                           Serverseitig wird auf Python (Cherrypy) und Couchdb gesetzt. Im <a href="https://code.google.com/p/nox-obscura-guildpage/source/checkout">Repository</a> liegt die aktuellste Version vor.
+                           Serverseitig wird auf Python (Cherrypy) und Couchdb gesetzt. Im <a href="https://github.com/themerius/nox-obscura.eu">Repository</a> liegt die aktuellste Version vor.
                        </p>
                    </div>
                    <div class="col4">
@@ -32,15 +32,12 @@
                        <strong>Sven Hodapp</strong> <em>Dhraha</em><br />
                        Hohentwielstraße 2<br />
                        78247 Hilzingen<br />
-                       ICQ 313232945<br />
-                       MOBIL +49176 24 96 1558<br />
                        <a href="http://www.google.com/recaptcha/mailhide/d?k=01XqiYzoiyjALqkrYV_2loJA==&c=coXcFs2_pLkr_FEPDg-vUp_FAOqbuMz6Y0ObJ6afG98=">MAIL</a>
                        </p>
                        <p>
                        <strong>Marvin Kiene</strong> <em>Karandrass</em><br />
                        Jahnstraße 19<br />
                        78224 Singen<br />
-                       ICQ 201916558<br />
                        MOBIL +49152 29 86 3786<br />
                        <a href="http://www.google.com/recaptcha/mailhide/d?k=01qn0ZOCXgRg_TL_GFRGP0Fg==&c=IFVPmq5jGDxh5J1RS2dXIkoD31-jeRJd5AKSw10gmcw=">MAIL</a>
                        </p>
